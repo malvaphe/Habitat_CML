@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="it">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Habitat RN2000 marini, costieri e litoranei</title>
+
+  <link rel="preconnect" href="https://unpkg.com" />
+  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+  <main id="app">
+    <div id="map" aria-label="Mappa habitat Natura 2000"></div>
+
+    <header class="topbar" role="banner" aria-label="Titolo pagina">
+      <div class="topbar__brand">
+        <div class="topbar__title">Habitat RN2000 marini, costieri e litoranei</div>
+        <div class="topbar__subtitle">Vector tiles • MapLibre GL JS</div>
+      </div>
+    </header>
+
+      <div id="loading" class="loading" aria-live="polite" aria-label="Caricamento mappa">
+        <div class="loading__card">
+          <div class="loading__spinner" aria-hidden="true"></div>
+          <div class="loading__text">
+            <div class="loading__title">Caricamento</div>
+            <div class="loading__subtitle">Sto preparando la mappa e i layer…</div>
+          </div>
+        </div>
+      </div>
+
+    <div class="ui ui--top-right" role="region" aria-label="Filtro habitat">
+      <label class="ui__label" for="habitatSelect">Habitat</label>
+      <select id="habitatSelect" class="ui__select">
+        <option value="__ALL__">Tutti</option>
+      </select>
+
+      <div class="ui__row" aria-label="Trasparenza habitat">
+        <label class="ui__label" for="opacityRange">
+          Trasparenza <span id="opacityValue" class="ui__value">55%</span>
+        </label>
+        <input id="opacityRange" class="ui__range" type="range" min="10" max="95" step="1" value="55" />
+      </div>
+    </div>
+
+    <section class="legend" aria-label="Legenda habitat">
+      <header class="legend__header">
+        <h2 class="legend__title">Legenda</h2>
+        <p class="legend__subtitle">Codici habitat</p>
+      </header>
+      <div id="legendItems" class="legend__items"></div>
+    </section>
+
+    <aside id="detailsPanel" class="panel panel--hidden" aria-label="Dettagli habitat" aria-hidden="true">
+      <div class="panel__header">
+        <div class="panel__heading">
+          <div class="panel__kicker">Dettagli poligono</div>
+          <div id="panelTitle" class="panel__title">—</div>
+        </div>
+        <button id="panelClose" class="panel__close" type="button" aria-label="Chiudi dettagli">
+          ✕
+        </button>
+      </div>
+      <div class="panel__body">
+        <div class="panel__hint">
+          Attributi del poligono selezionato. Scorri per vederli tutti.
+        </div>
+        <div id="panelProps" class="panel__props" role="list"></div>
+      </div>
+    </aside>
+
+      <div id="toast" class="toast toast--hidden" role="status" aria-live="polite"></div>
+  </main>
+
+  <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+  <script src="./script.js"></script>
+</body>
+
+</html>
